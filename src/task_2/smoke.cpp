@@ -6,9 +6,9 @@
 
 #include "../simple_test.h"
 
-// #define task_2_functions
-// #define task_2_functors
-// #define task_2_movable_only
+ #define task_2_functions
+ #define task_2_functors
+ #define task_2_movable_only
 
 [[maybe_unused]]
 static int constant() {
@@ -118,6 +118,7 @@ struct Idter {
 
 TEST(curry, simple_functors) {
     {
+        static_assert(control_03::details::func_trait<MoveOnlyIdFunctor>::size);
         auto constant = []() { return 32; };
         EXPECT_EQ(32, control_03::curry(constant)());
     }
